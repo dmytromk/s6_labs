@@ -1,0 +1,19 @@
+let
+    function read_unsigned() : int =
+            var num_str := "";
+            var ch := getchar();
+            var ascii_ch := ord(ch);
+            var digit := ascii_ch - ord("0");
+            while ch <> "" & digit >= 0 & digit <= 9 do
+                 num_str := num_str ^ ch;
+                 ch := getchar();
+                 ascii_ch := ord(ch);
+                 digit := ascii_ch - ord("0");
+            if num_str = "" then
+                -1
+            else
+                int_of_string(num_str)
+in
+    print_int(a * 2);
+    print("\n")
+end
