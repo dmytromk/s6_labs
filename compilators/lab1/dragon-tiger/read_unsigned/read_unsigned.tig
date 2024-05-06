@@ -1,19 +1,26 @@
 let
     function read_unsigned() : int =
-            var num_str := "";
-            var ch := getchar();
-            var ascii_ch := ord(ch);
-            var digit := ascii_ch - ord("0");
-            while ch <> "" & digit >= 0 & digit <= 9 do
-                 num_str := num_str ^ ch;
-                 ch := getchar();
-                 ascii_ch := ord(ch);
-                 digit := ascii_ch - ord("0");
-            if num_str = "" then
-                -1
-            else
-                int_of_string(num_str)
+    let
+        var sum := 0
+        var cur_char := ""
+
+        function is_end(n: string) : int =
+            if ord(n) = ord("\n")
+            then 1
+            else 0
+
+        function is_isdigit(n: string) : int =
+            ord(n) >= ord("0") & ord(n) <= ord("9")
+
+    in
+        while sum <> -1 do
+            (cur_char := getchar();
+            if is_end(cur_char) <> 0 then break
+            else if is_isdigit(cur_char) <> 0 then sum := sum * 10 + ord(cur_char) - ord("0")
+            else sum := -1);
+        sum
+    end
 in
-    print_int(a * 2);
+    print_int(read_unsigned());
     print("\n")
 end
