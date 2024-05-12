@@ -90,13 +90,16 @@ var      return yy::tiger_parser::make_VAR(loc);
 
  /* Integers */
 {int}      {
-  char *endptr;
+  char *endptr = NULL;
   errno = 0;
   long result = strtol(yytext, &endptr, 10);
 
   if (endptr == yytext)
     utils::error(loc, "can't parse number");
-  else if ((result >= TIGER_INT_MAX) && (errno == ERANGE))
+  else if ((
+    (result == LONG_MAX || result == LONG_MIN) && errno == ERANGE) | // internal check for strtol
+    result > TIGER_INT_MAX                                           // check for tiger constraint
+  )
     utils::error(loc, "number out of range");
   else
     return yy::tiger_parser::make_INT(result, loc);
