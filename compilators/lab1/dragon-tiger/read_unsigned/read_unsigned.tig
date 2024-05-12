@@ -21,6 +21,6 @@ let
         sum
     end
 in
-    print_int(read_unsigned());
+    print_int(read_unsigned()*2);
     print("\n")
 end
