@@ -1,0 +1,22 @@
+program FactorialCalculator;
+uses crt;
+
+var
+  number, i: integer;
+  factorial: longint;
+
+begin
+  clrscr;
+  writeln('Enter a number to calculate its factorial:');
+  readln(number);
+
+  factorial := 1;
+
+  for i := 1 to number do
+  begin
+    factorial := factorial * i;
+  end;
+
+  writeln('The factorial of ', number, ' is ', factorial);
+  readln;
+end.
